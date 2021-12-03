@@ -1,5 +1,6 @@
 /*
-带头结点A，分解为A，B，A为奇数项，B为偶数
+hc为C的表头，C = {a,b,a,b,a,b},拆分其分A，B，空间复杂度为O(1)
+代码跟10题一样
 */
 LNode* Divide_A(LNode *A)
 {

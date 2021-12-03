@@ -13,11 +13,11 @@ void SortDelete(LNode *L)
         int min = 10000000;
         while( temp != NULL)
         {
-            if( temp->data < min)
-            {
-                min = temp->data;
-                while( p != temp)
-                    p = p->next;
+            if( temp->data < min)               //这里的找最小值不必要
+            {                                   //只需要找到最小值的结点的前驱就可以了可以这样写
+                min = temp->data;               //while(p->next != NULL)    
+                while( p != temp)               // if(p->next->data < pre->next->data) pre = p;
+                    p = p->next;                // p = p->next;
                 while( pre->next != p)
                     pre = pre->next;
             }

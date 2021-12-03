@@ -43,48 +43,68 @@ void Print_Head(LNode *L)
     }
 }
 
-void Divide_A(LNode *A, LNode *B)
 
 
-{
-
-
-LNode *p = A->next;
-
-
-LNode *pb = B;
-
-
-while( p != NULL )
-
+void ReSortLL(LNode *L)
 
 {
 
+LNode *rL = L->next;
 
-pb->next = p->next;
+LNode *p, *r, *head;
 
-if(p->next != NULL)
-	p->next = p->next->next;
+while( rL->next != NULL )
 
-pb = pb->next;
+{
 
-p = p->next;
+p = rL->next;
 
+head = p;
+
+while( p->next != NULL )
+
+{
+
+r = p->next;
+
+p->next = r->next;
+
+r->next = head;
+
+head = r;
+
+}
+
+rL->next = head;
+
+rL = rL->next;
+
+}
 
 }
 
 
-}
+
 
 
 
 
 int main()
 {
-    int a[] = {1,2,3,4,5};
+    int a[] = {1,2,3,4,5,6,7};
     LNode *L = new LNode();
     L->next = NULL;
-    build_L(a, 5, L);
+    build_L(a, 7, L);
+    Print_Head(L);
+    cout << "\n";
+    
+    // int b[] = {5,7,11,13};
+    // LNode *L2 = new LNode();
+    // L2->next = NULL;
+    // build_L(b, 4, L2);
+    // Print_Head(L2);
+    // cout << "\n";
+    
     //打印
     // Print_No_Head(L->next);
     // cout << "\n";
@@ -92,13 +112,9 @@ int main()
     // cout << "\n";
 
     //测试代码
-    
-    LNode *L2 = new LNode();
-    L2->next = NULL;
-    
-    Divide_A(L, L2);
+    ReSortLL(L);
 
+    
     Print_Head(L);
-    Print_Head(L2);
     return 0;
 }

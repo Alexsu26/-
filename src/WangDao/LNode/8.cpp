@@ -51,3 +51,36 @@ void OverlapLL(LNode *L1, LNode *L2)
         p2 = p2->next;
     }
 }
+//比较结点的代码与比值差不多，但是不好实现；书上源码用到了longlist和
+//shortlist，避免了分情况讨论，还是有参考价值
+LNode* Search_1st_Common(LNode *L1, LNode* L2)
+{
+    int len1 = length(L1),len2 = length(L2);
+    LNode *longlist, *shortlist;
+    if( len1 > len2 ) 
+    {
+        longlist = L1;
+        shortlist = L2;
+        dist = len1 - len2;
+    }
+    else
+    {
+        longlist = L2;
+        shortlist = L1;
+        dist = len2 - len1;
+    }
+    while(dist--)
+        longlist = longlist->next;
+    while(longlist != NULL)
+    {
+        if(longlist == shortlist)
+            return longlist;
+        else
+        {
+            longlist = longlist->next;
+            shortlist = shortlist->next;
+        }
+    }
+    return NULL;
+
+}
